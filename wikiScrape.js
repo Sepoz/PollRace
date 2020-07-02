@@ -28,7 +28,27 @@ async function getWikiPage() {
       row.push(dataCell);
     }
   }
-  console.log(polls);  
+  const pollsObject = polls.map(poll => {
+    return {
+      date: poll[0],
+      pollingFirm: poll[1],
+      sampleSize: poll[2],
+      M5S: poll[3],
+      PD: poll[4],
+      Lega: poll[5],
+      FI: poll[6],
+      FdI: poll[7],
+      LS: poll[8],
+      EU: poll[9],
+      EV: poll[10],
+      C: poll[11],
+      A: poll[12],
+      IV: poll[13],
+      other: poll[14],
+      lead: poll[15]
+    }
+  });
+  console.log('pollsObject', pollsObject);  
 }
 
 module.exports = {
