@@ -1,13 +1,15 @@
 const express = require('express');
-const Data = require('./module/wikiScrape.js');
+const helmet = require('helmet');
+const cors = require('cors');
+const poll = require('./routes/pollRoute.js');
 
 const app = express();
 
-app.get('/polls/:pNum', async (req, res) => {
-  const num = Number(req.params.pNum);
-  let getPolls = await Data.getWikiPage(num);
-  res.json(getPolls);
-})
+// middleware
+app.use(helmet());
+app.use(cors());
+app.use('/api', poll);
+
 
 const port = 3030;
 app.listen(port, () => {
