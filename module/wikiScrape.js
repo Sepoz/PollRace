@@ -5,18 +5,19 @@ require('dotenv').config();
 // eslint-disable-next-line no-undef
 const url = process.env.BASE_URL;
 
-async function getWikiPage() {
+async function getWikiPage(pNum) {
   const response = await fetch(url);
   const html = await response.text();
   const $ = cheerio.load(html);
   let polls = [];
   let row = [];
+  const pollsNumber = pNum;
   
   // select the 2020 polls table
   const dataTable = $('.wikitable').first();
 
   // find the total number of row or the app will break (allTheRows.length)
-  for(let i = 3; i < 10; i++) {
+  for(let i = 3; i < pollsNumber + 4; i++) {
     let dataRow = dataTable.find(`tbody > tr:nth-child(${i})`);
     if(i > 3) {
       polls = polls.concat([row]);
@@ -48,7 +49,7 @@ async function getWikiPage() {
       lead: poll[15]
     }
   });
-  console.log('pollsObject', pollsObject);  
+  return pollsObject;  
 }
 
 module.exports = {

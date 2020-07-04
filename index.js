@@ -1,9 +1,13 @@
 const express = require('express');
-const Data = require('./wikiScrape.js');
+const Data = require('./module/wikiScrape.js');
 
 const app = express();
 
-Data.getWikiPage();
+app.get('/polls/:pNum', async (req, res) => {
+  const num = Number(req.params.pNum);
+  let getPolls = await Data.getWikiPage(num);
+  res.json(getPolls);
+})
 
 const port = 3030;
 app.listen(port, () => {
