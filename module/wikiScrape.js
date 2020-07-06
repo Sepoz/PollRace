@@ -1,6 +1,5 @@
 const fetch = require('node-fetch');
 const cheerio = require('cheerio');
-require('dotenv').config();
 
 // eslint-disable-next-line no-undef
 const url = process.env.BASE_URL;

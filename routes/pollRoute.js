@@ -6,7 +6,7 @@ let cacheData;
 let cacheTime;
 let cachePNum;
 
-router.get('/polls/:pNum', async (req, res) => {
+router.get('/polls/:pNum', async (req, res, next) => {
   if(cacheTime && cacheTime > Date.now() - 1000 * 600) {
     if(cachePNum && cachePNum === req.params.pNum) {
       return res.json(cacheData);
@@ -20,7 +20,7 @@ router.get('/polls/:pNum', async (req, res) => {
     cachePNum = req.params.pNum;
     return res.json(getPolls);
   } catch (error) {
-    console.log(error);
+    next(error);
   }
 });
 
