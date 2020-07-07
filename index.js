@@ -1,8 +1,10 @@
 const express = require('express');
 const helmet = require('helmet');
+const morgan = require('morgan');
 const cors = require('cors');
 
 require('dotenv').config();
+morgan('tiny');
 
 const poll = require('./routes/pollRoute.js');
 const middleware = require('./middleware/erorrHandling.js');
