@@ -18,7 +18,7 @@ app.use('/api', poll);
 app.use(middleware.notFound);
 app.use(middleware.errorHandler);
 
-const port = 3030;
+const port = 3000;
 app.listen(port, () => {
   console.log(`listening on http://localhost:${port}`);
 });
