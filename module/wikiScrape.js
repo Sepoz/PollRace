@@ -2,7 +2,7 @@ const fetch = require('node-fetch');
 const cheerio = require('cheerio');
 
 // eslint-disable-next-line no-undef
-const url = process.env.BASE_URL;
+const url = 'https://en.wikipedia.org/wiki/Opinion_polling_for_the_next_Italian_general_election';
 
 async function getWikiPage(pNum) {
   const response = await fetch(url);
